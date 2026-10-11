@@ -1,0 +1,331 @@
+/*< !--COMP 3450: Authors: Magdala Nwuke,
+Fabeeha Anbar Ahmed,
+Oyinkansola Olarerin (Mabel)*/
+
+.wrapper{
+    margin-top: 300px;
+    display: flex;
+    padding: 50px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    
+ 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h2{
+    font-size: 25px;
+    text-align: center;
+    padding: 10px;
+}
+
+h1{
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+}
+.wrapper img{
+
+    height: 500px;
+    width: 500px;
+    border-radius: 10%;
+}
+
+.button {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.button button{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(72, 122, 106);
+    color: white;
+    
+}
+
+
+.wrapper p{
+    padding: 10px;
+    text-align: center;
+}
+
+.wrapper ul{
+    text-align: left;
+}
+
+
+.results-card {
+    background-color: #FFF9D8;
+    border-radius: 24px;
+    padding: 3rem 3rem;        /* bigger padding inside the card */
+    max-width: 1100px;         /* wider card */
+    margin: 40px auto 3rem;       /* more space underneath */
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border: 2px solid #FFECB3;
+    
+}
+
+
+
+
+.results-card img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 1rem auto 0;
+}
+
+/* === Dr Aloe section === */
+.dr-aloe-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 3rem auto;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0;
+}
+
+/* Mascot slide-in */
+.dr-aloe-mascot {
+    position: relative;
+    opacity: 0;
+    transform: translate(-200px, -50%);
+    animation: aloeLeftMiddle 0.8s ease-out forwards
+
+}
+
+/* Animation keyframes */
+@keyframes aloeLeftMiddle {
+    from {
+        opacity: 0;
+        transform: translate(-200px, -50%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
+
+.dr-aloe-section {
+    display: flex;
+    align-items: center;     /* centers Aloe vertically */
+    overflow: visible !important;
+    margin-top: -40px; /* pull Aloe closer to the card */
+    margin-bottom: 40px;
+
+}
+
+
+.dr-aloe-mascot img {
+    width: 260px;
+    height: auto;
+    object-fit: contain;
+    width: 240px; /* slightly smaller = looks cuter + fits better */
+}
+
+
+/* Speech bubble base */
+.speech-bubble {
+    position: absolute;
+    top: 20px;
+    left: 240px;
+    background: white;
+    border-radius: 24px;
+    padding: 18px 24px;
+    border: 3px solid #ffd98a;
+    font-weight: 700;
+    font-family: "Indie Flower", cursive;
+    min-width: 240px;
+    max-width: 330px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Bubble arrow */
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 20px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+}
+
+/* Bubble 2 more margin since text is longer */
+.bubble-2 {
+    margin-top: 50px;
+    
+}
+
+/* Animation */
+@keyframes aloeSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-200px, 0); /* starts off-screen */
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);  /* stops slightly left */
+    }
+
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .dr-aloe-section {
+        justify-content: center;
+    }
+    .dr-aloe-mascot img {
+        width: 200px;
+    }
+    .speech-bubble {
+        left: 200px;
+    }
+}
+.dr-aloe-section {
+    overflow: visible !important;
+}
+
+/* Second yellow card (same style as the first one) */
+.second-card {
+    background-color: #FFF9D8 !important;
+    margin-top: 40px;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border: 2px solid #FFECB3;
+}
+
+/* Improve list spacing in the card */
+.second-card ul {
+    text-align: left;
+    margin: 20px auto;
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+.second-card li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.fungal-card {
+    background-color: #FFF9DB; /* butter yellow */
+    border: 2px solid #FFECB3; /* soft golden border */
+    border-radius: 25px;
+    padding: 3rem;
+    max-width: 1100px;
+    margin: 40px auto;   /* space around the card */
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* Hidden initial state */
+.hidden {
+    display: none;
+}
+
+/* Aloe container */
+.aloe-fungal {
+    position: fixed;
+    bottom: -300px;  /* off-screen initially */
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    opacity: 0;
+    transition: all 0.7s ease-out;
+}
+
+/* Aloe when visible */
+.aloe-fungal.show {
+    bottom: 20px;
+    opacity: 1;
+}
+
+/* Aloe image */
+.aloe-fungal-img {
+    height: 200px;
+    width: auto;
+    animation: aloe-pop 0.6s ease forwards;
+}
+
+/* Bubble */
+.aloe-fungal-bubble {
+    background-color: #FFF9DB;
+    border: 2px solid #FFECB3;
+    padding: 18px 22px;
+    border-radius: 18px;
+    max-width: 260px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    color: #4b3f3a;
+    animation: bubble-pop 0.6s ease forwards;
+}
+
+/* Animations */
+@keyframes aloe-pop {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bubble-pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Small Aloe pop-up for fungal page */
+.aloe-popup {
+    position: fixed;
+    bottom: -200px;
+    left: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    z-index: 9999;
+}
+
+.aloe-popup.show {
+    bottom: 20px;
+    opacity: 1;
+}
+
+.aloe-img-small {
+    width: 140px;
+    height: auto;
+}
+
+.aloe-bubble {
+    background: #FFF9DB;
+    border: 2px solid #FFECB3;
+    padding: 14px 18px;
+    border-radius: 16px;
+    max-width: 240px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    color: #4b3f3a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.hidden { display: none; }
+
+.dr-aloe-mascot {
+    position: absolute;
+    left: 80px;   /* move horizontally */
+    top: 650px;   /* move vertically */
+}
+

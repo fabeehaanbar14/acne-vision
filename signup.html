@@ -1,0 +1,208 @@
+<!--COMP 3450: Authors: Magdala Nwuke, Fabeeha Anbar Ahmed, Oyinkansola Olarerin (Mabel)-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign up</title>
+    <link href="assets/css/login.css" rel="stylesheet">.
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!--
+    <div id="header" class="header d-flex align-items-center sticky-top">
+        <img src="assets/img/makeup.jpg" alt="makeup-icon"> 
+            <h1>Acnevision</h1>
+            </div>
+
+            <div>
+            <nav class="header-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                </ul>
+            </nav>
+            </div>-->
+
+
+
+    <div class="outer">
+        <img src="assets/img/routine.jpg" id="form-pic" alt="makeup image">
+
+                <div class="wrapper">
+                    <form id="register-form" action="">
+                        <h1 style="font-family:Verdana, Geneva, Tahoma, sans-serif">Acnevision</h1>
+                        <h2>Sign Up</h2>
+                        <div class="form-group">
+                            <div class="header-row">
+                                <span class="icon">
+                                    <ion-icon name="person-circle-outline"></ion-icon>
+                                </span>
+                                <label for="username" class="labels">Username</label>
+                
+                            </div>
+                            <div class="input-wrapper">
+                                <input id="username" type="text" placeholder="Username" required>
+                            </div>
+                
+                        </div>
+                        <div class="form-group">
+                            <div class="header-row">
+                                <span class="icon">
+                                    <ion-icon name="lock-closed-outline"></ion-icon>
+                                </span>
+                                <label for="password" class="labels">Password</label>
+                
+                
+                            </div>
+                
+                            <div class="input-wrapper">
+                
+                                <input type="password" id="password" placeholder="Password" required>
+                                <span class="checkmark">
+                                    <ion-icon name="checkmark-circle-outline" style="color: rgb(5, 150, 102);"></ion-icon>
+                                </span>
+                
+                            </div>
+                
+                        </div>
+                        <p id="pass-text"> </p>
+                
+                        <!--<div class="reset-pass">
+                            <a href="#">Forgot Password?</a>
+                        </div>-->
+                <button id="signup-btn" type="button">Sign up</button>
+
+                <div class="signup-link">
+                    <p>Already have an account?</p> <!--<a href="login.html"> Login</a>-->
+                    <button id="login-btn" onclick="location.href='login.html'">Login</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!--<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const usernameInput = document.getElementById("username");
+            const passwordInput = document.getElementById("password");
+            const signupBtn = document.getElementById("signup-btn");
+
+            signupBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                alert("It works!");
+            });
+        });
+    </script>-->
+    
+    <!-- Firebase Scripts (Global) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    
+    <script>
+         
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOYdeSkSxmRkj_q1rSJrPHV40vVmQkiF4",
+            authDomain: "acnevision-85adc.firebaseapp.com",
+            projectId: "acnevision-85adc",
+            storageBucket: "acnevision-85adc.firebasestorage.app",
+            messagingSenderId: "790385055700",
+            appId: "1:790385055700:web:2c47213a66d4e489df6841"
+        };
+
+       //firbase initialisation
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        //variables
+        const signupBtn = document.getElementById("signup-btn");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+
+        //click listener to create users upon form fill in
+        signupBtn.addEventListener("click", async () => {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            if (!username || !password) {
+                alert("Please enter both username and password");
+                return;
+            }
+
+            // create a fake user for the email so they can enter a simple username
+            const userEmail = `${username}@app.local`;
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(userEmail, password);
+                window.location.href="index.html";
+                //alert("Signup successful! UID: " + userCredential.user.uid);
+
+              //save user info
+                await db.collection("users").doc(userCredential.user.uid).set({
+                    username: username,
+                    createdAt: new Date()
+                });
+
+                console.log("User saved to Firestore");
+
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+    </script>
+    <script>
+
+        const pInput = document.getElementById("password");
+        const checkmark = document.querySelector(".checkmark");
+
+
+        const passwordFeedback = document.getElementById("pass-text");
+
+        function makeVisible(element) {
+
+            element.style.display = "flex";
+
+        }
+
+        function makeInvisible(element) {
+
+            element.style.display = "none";
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            makeInvisible(checkmark);
+        });
+
+        passwordInput.addEventListener("input", () => {
+            const value = pInput.value;
+
+            if (value.length >= 8) {
+                passwordFeedback.textContent = "password accepted";
+                makeVisible(passwordFeedback);
+                makeVisible(checkmark);
+            }
+
+            else {
+                passwordFeedback.textContent = "password should be 8 characters or longer";
+                makeVisible(passwordFeedback);
+                makeInvisible(checkmark);
+
+            }
+        });
+      </script>  
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+</body>
+
+</html>

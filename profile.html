@@ -1,0 +1,167 @@
+<!--COMP 3450: Authors: Magdala Nwuke, Fabeeha Anbar Ahmed, Oyinkansola Olarerin (Mabel)-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Index - Active Bootstrap Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+   
+    <link href="assets/css/profile.css" rel="stylesheet">
+
+    <!-- =======================================================
+  * Template Name: Active
+  * Template URL: https://bootstrapmade.com/active-bootstrap-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+            <!-- Logo (image + title) -->
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/doctor-aloe.png" class="sitename" alt="Doctor Aloe" />
+                <div class="logo-text">
+                    <h1 class="site-title">Acne Vision</h1>
+                    <div class="logo-line"></div>
+                </div>
+            </a>
+
+
+            <!-- Navigation -->
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    
+                    <li><a href="quiz.html">Quiz</a></li>
+                    <!--<li><a href="login.html">Login</a></li>-->
+                    <li><a href="feedback.html">Leave a Review</a></li>
+                    <li class="dropdown">
+                        <a href="profile.html">
+                            Profile <i class="bi bi-chevron-down toggle-dropdown"></i>
+                        </a>
+                        <ul>
+                            <li><a href="myjournal.html">My Journal</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+    <!-- Full-width divider below header -->
+    <hr class="header-divider" />
+
+    <div class="user-profile">
+        <h1> Hi there!</h1>
+        <img src="assets/img/Dr.Aloe.png" alt="profile pic">
+        <p>You can now access your journal</p>
+    <a href="myjournal.html" class="entry-btn">Write your first entry</a>
+        <a href="#" id="logout-btn">Logout</a>
+
+
+    </div>
+
+<!-- Doctor Aloe Popup -->
+<div id="aloe-popup" class="aloe-popup">
+    <img src="assets/img/doctor-aloe.png" class="aloe-img" alt="Doctor Aloe">
+    <div class="speech-bubble">
+        In this page you can add an entry to your journal!
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("aloe-popup");
+    
+        // Show Doctor Aloe after slight delay
+        setTimeout(() => {
+            popup.classList.add("show");
+        }, 800);
+    
+        // No disappearing!
+    });
+    </script>
+    
+    
+    
+   <script>
+     // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOYdeSkSxmRkj_q1rSJrPHV40vVmQkiF4",
+            authDomain: "acnevision-85adc.firebaseapp.com",
+            projectId: "acnevision-85adc",
+            storageBucket: "acnevision-85adc.firebasestorage.app",
+            messagingSenderId: "790385055700",
+            appId: "1:790385055700:web:2c47213a66d4e489df6841"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (!logoutBtn) {
+            console.warn("Logout button not found!");
+            return;
+        }
+
+        logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("Logout button clicked"); 
+
+            const confirmLogout = confirm("Are you sure you want to log out?");
+            if (confirmLogout) {
+                console.log("User confirmed logout"); 
+                firebase.auth().signOut()
+                    .then(() => {
+                        alert("You have been logged out.");
+                        window.location.href = "login.html";
+                    })
+                    .catch((error) => {
+                        console.error("Sign out error:", error);
+                        alert("Error signing out. Please try again.");
+                    });
+            } else {
+                console.log("User canceled logout"); 
+            }
+        });
+    });
+</script>
+
+
+    </body>
+</html>

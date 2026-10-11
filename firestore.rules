@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Profile document: one per user, named after their user id.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Quiz result: one per user, named after their user id.
+    match /quizResults/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Journal entries: each entry stores the userId of its owner.
+    match /journalEntries/{entryId} {
+      allow create: if request.auth != null
+                    && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if request.auth != null
+                    && resource.data.userId == request.auth.uid;
+    }
+  }
+}

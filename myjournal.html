@@ -1,0 +1,203 @@
+<!--COMP 3450: Authors: Magdala Nwuke, Fabeeha Anbar Ahmed, Oyinkansola Olarerin (Mabel)-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>My Journal - Acne Vision</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main2.css" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+  <!-- Header -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/doctor-aloe.png" alt="Doctor Aloe" class="sitename">
+        <div class="logo-text">
+          <h1 class="site-title">Acne Vision</h1>
+          <div class="logo-line"></div>
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          
+          <li><a href="quiz.html">Quiz</a></li>
+          <!--<li><a href="login.html">Login</a></li>-->
+          <li><a href="feedback.html">Leave a Review</a></li><li><a href="signup.html">Sign up</a></li>
+          <li class="dropdown">
+            <a href="profile.html">
+              Profile <i class="bi bi-chevron-down toggle-dropdown"></i>
+            </a>
+            <ul>
+              <li><a href="myjournal.html">My Journal</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <hr class="header-divider" />
+
+  <!-- Journal Section -->
+  <main class="main" style="margin-top: 120px;">
+    <section id="journal" class="journal section container">
+        
+        <!-- Journal page peek Aloe (bottom-left) -->
+        <div id="journal-aloe">
+            <img src="assets/img/doctor-aloe.png" alt="Doctor Aloe" id="journal-aloe-img" />
+            <div id="journal-aloe-bubble">
+              Feel free to record your skincare journey! It is your safe place.
+            </div>
+          </div>
+          
+          
+  
+      <div class="journal-card shadow-sm">
+  
+        <div class="journal-header d-flex align-items-center">
+            <i class="bi bi-pencil journal-icon"></i>
+            <h2 class="journal-title">My Journal</h2>
+          </div>
+          
+  
+        <p class="journal-subtitle">
+          This is your private space. Write freely about your skincare journey, upload progress photos, and
+          come back later to see how far you’ve come ✨
+        </p>
+  
+        <form id="journal-form" enctype="multipart/form-data">
+          <textarea id="journal-entry" class="form-control journal-textarea" rows="5"
+            placeholder="How’s your skin feeling today? What products did you try? Any improvements or struggles? Write it all down…"></textarea>
+  
+          <label class="upload-label mt-3">
+            <i class="bi bi-image"></i> Add a progress photo
+          </label>
+          <input type="file" id="journal-image" class="form-control">
+  
+          <button type="submit" class="btn btn-journal mt-3">Save Entry</button>
+        </form>
+  
+      </div>
+  
+      <div class="past-entries-card shadow-sm mt-5">
+        <h3 class="entries-title">Your Past Entries</h3>
+        <div id="entries-container"></div>
+      </div>
+      
+  
+    </section>
+  </main>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Firebase config (same as login page)
+  const firebaseConfig = {
+      apiKey: "AIzaSyDOYdeSkSxmRkj_q1rSJrPHV40vVmQkiF4",
+      authDomain: "acnevision-85adc.firebaseapp.com",
+      projectId: "acnevision-85adc",
+      storageBucket: "acnevision-85adc.firebasestorage.app",
+      messagingSenderId: "790385055700",
+      appId: "1:790385055700:web:2c47213a66d4e489df6841"
+    };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  const form = document.getElementById("journal-form");
+  const entryInput = document.getElementById("journal-entry");
+  const entriesContainer = document.getElementById("entries-container");
+
+  let currentUser = null;
+
+  // Check user login
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      currentUser = user;
+      console.log("Signed in as:", user.email || user.uid);
+      loadEntries();
+    } else {
+      console.log("No user logged in");
+      window.location.href = "login.html";
+    }
+  });
+
+  // Save entry
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!currentUser) return;
+
+    const content = entryInput.value.trim();
+    if (!content) return;
+
+    try {
+      await db.collection("journalEntries").add({
+        userId: currentUser.uid,
+        content: content,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      entryInput.value = "";
+      loadEntries();
+    } catch (err) {
+      console.error("Error saving entry:", err);
+    }
+  });
+
+  // Load entries for current user
+  async function loadEntries() {
+    if (!currentUser) return;
+    entriesContainer.innerHTML = "";
+
+    try {
+      const snapshot = await db.collection("journalEntries")
+        .where("userId", "==", currentUser.uid)
+        .orderBy("createdAt", "desc")
+        .get();
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.classList.add("journal-item", "mb-3", "p-2", "border", "rounded");
+
+        const dateStr = data.createdAt?.toDate ? data.createdAt.toDate().toLocaleString() : "";
+        div.innerHTML = `<p>${data.content}</p><small class="text-muted">${dateStr}</small>`;
+        entriesContainer.appendChild(div);
+      });
+    } catch (err) {
+      console.error("Error loading entries:", err);
+    }
+  }
+</script>
+
+
+  
+  </body>
+  </html>

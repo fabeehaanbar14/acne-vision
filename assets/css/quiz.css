@@ -1,0 +1,440 @@
+/*< !--COMP 3450: Authors: Magdala Nwuke,
+Fabeeha Anbar Ahmed,
+Oyinkansola Olarerin (Mabel)*/
+.quiz-container{
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#question1,
+#question2,
+#question3,
+#question4,
+#question5,
+#question6,
+#question7,
+#thank-you {
+   
+    display: flex;
+}
+
+.option.selected{
+    background-color: rgb(70, 118, 118)!important;
+}
+
+.quiz-info{
+   text-align: center;
+   font-family: indie;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 400;
+        font-style: normal;    
+}
+
+.quiz-info img{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+}
+
+.quiz-info h1{
+    margin-top: 60px;
+    font-size: 30px;
+    
+}
+.quiz-info button{
+    background-color: rgb(107, 183, 114);
+}
+
+.quiz-info p {
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.question h2{
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.question h1 {
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.option{
+    
+    display: flex;
+    padding: 30px;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border: 1px;
+        border-style: solid;
+        border-color: black;
+        border-radius: 30px;
+        width: 500px;
+            height: 50px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(109, 154, 126);
+}
+
+.option:hover, .option:hover, .option:hover, .option:hover{
+    background-color: rgb(70, 118, 118);
+}
+
+.nextbtn {
+    display: none !important;
+}
+
+
+#submit-btn {
+    background: #FFF4B8;              /* butter yellow */
+    border: 2px solid #E5C760;        /* warm golden border */
+    color: #4b3f0b;                   /* dark honey brown text */
+    font-weight: 600;
+    padding: 14px 22px;
+    border-radius: 12px;              /* card-style rounded corners */
+    font-size: 18px;
+    cursor: pointer;
+    width: 260px;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    transition: all 0.25s ease;
+  }
+  
+  /* Hover effect */
+  #submit-btn:hover {
+    background: #FFEFA3;               /* slightly brighter butter yellow */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+  }
+  
+  /* Click (active) effect */
+  #submit-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+  }
+  
+
+.options-container{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#next-btn1, #next-btn2, #next-btn3,
+#next-btn4,#next-btn5,
+#next-btn6 {
+    margin-top: 50px;
+    padding: 10px 25px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(67, 87, 69);
+    color: white;
+    cursor: pointer;
+
+}
+
+.quiz-info button{
+    margin-top: 10px;
+        padding: 10px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 20px;
+        background-color: rgb(107, 183, 114);
+        color: white;
+        cursor: pointer;
+
+}
+
+#question1, #question2, #question3, #question4, #question5, #question6, #question7{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nextbtn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.thank-you{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.thank-you h1{
+    font-size: 15px;
+    text-align: center;
+}
+
+#load{
+    height: 60px;
+    width: 30px;
+}
+
+.img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container img{
+    height: 600px;
+    width: 500px;
+}
+
+
+
+
+/* Popup container */
+.aloe-popup {
+    position: fixed;
+    bottom: -200px; /* start hidden */
+    right: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    z-index: 9999;
+  }
+  
+  /* When visible */
+  .aloe-popup.show {
+    bottom: 20px;
+    opacity: 1;
+  }
+  
+  /* Dr. Aloe image */
+  .aloe-img {
+    width: 180px;
+    height: auto;
+    animation: popUp 0.6s ease-out forwards;
+  }
+  
+  /* Speech bubble */
+  .aloe-bubble {
+    background: #FFF4B8; /* butter yellow */
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid #E5C760; /* slightly darker butter tone */
+    font-size: 16px;
+    max-width: 240px;
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  
+  
+  /* Link styling */
+  .signup-link {
+    color: #2a7ae2;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .signup-link:hover {
+    color: #1e54a4;
+  }
+  
+  /* Cute pop animation */
+  @keyframes popUp {
+    0% { transform: translateY(30px) scale(0.8); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  
+
+
+
+/* Popup container */
+.aloe-popup {
+    position: fixed;
+    bottom: -200px; /* start hidden */
+    right: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    z-index: 9999;
+  }
+  
+  /* When visible */
+  .aloe-popup.show {
+    bottom: 20px;
+    opacity: 1;
+  }
+  
+  /* Dr. Aloe image */
+  .aloe-img {
+    width: 130px;
+    height: auto;
+    animation: popUp 0.6s ease-out forwards;
+  }
+  
+  /* Speech bubble */
+  .aloe-bubble {
+    background: #FFF4B8; /* butter yellow */
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 2px solid #E5C760; /* slightly darker butter tone */
+    font-size: 16px;
+    max-width: 240px;
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  
+  
+  /* Link styling */
+  .signup-link {
+    color: #2a7ae2;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .signup-link:hover {
+    color: #1e54a4;
+  }
+  
+  /* Cute pop animation */
+  @keyframes popUp {
+    0% { transform: translateY(30px) scale(0.8); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  
+
+  /* Container for popup */
+.aloe-q-popup {
+    position: fixed;
+    bottom: -300px;              /* start hidden below screen */
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.7s ease-out;
+}
+
+/* Aloe image */
+.aloe-q-img {
+    height: 200px;
+    width: auto;
+}
+
+/* Speech bubble */
+.aloe-q-bubble {
+    background: #FFF9DB;
+    border: 2px solid #FFECB3;
+    padding: 15px 20px;
+    border-radius: 15px;
+    max-width: 250px;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #4b3f3a;
+}
+
+/* Active state → Aloe pops up */
+.aloe-q-popup.show {
+    bottom: 20px;  /* move into view */
+    opacity: 1;
+}
+/* Hidden by default */
+.hidden {
+    display: none;
+  }
+  
+  /* Aloe container */
+  #aloe-q1 {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  /* Aloe image */
+  .aloe-q1-img {
+    width: 180px;
+    animation: pop-up 0.6s ease forwards;
+  }
+  
+  /* Speech bubble */
+  .aloe-q1-bubble {
+    background: #fff9db;
+    border: 2px solid #ffecb3;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+    max-width: 240px;
+    animation: bubble-pop 0.6s ease forwards;
+  }
+  
+  /* Animation */
+  @keyframes pop-up {
+    0% { transform: translateY(100px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes bubble-pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  #aloe-q1 {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  .aloe-q1-img {
+    width: 180px;
+    animation: pop-up 0.6s ease forwards;
+  }
+  
+  .aloe-q1-bubble {
+    background: #fff9db;
+    border: 2px solid #ffecb3;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+    max-width: 240px;
+    animation: bubble-pop 0.6s ease forwards;
+  }
+  
+  .hidden { display: none; }
+    

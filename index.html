@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fabeeha Anbar Ahmed | Portfolio</title>
+<meta name="description" content="Portfolio of Fabeeha Anbar Ahmed, Computing Science student at Thompson Rivers University.">
+<style>
+  :root{
+    --bg:#faf8f5; --card:#ffffff; --ink:#1f2430; --muted:#5f6675;
+    --accent:#2f4b8a; --accent-soft:#e8edf8; --line:#e6e2db;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+  h1,h2,h3,.btn,nav,.tag{font-family:"Helvetica Neue",Arial,sans-serif}
+  a{color:var(--accent)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+  header.site{position:sticky;top:0;background:rgba(250,248,245,.94);
+    backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:5}
+  header.site .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  header.site strong{font-family:"Helvetica Neue",Arial,sans-serif}
+  nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-size:15px}
+  nav a:hover{color:var(--accent)}
+
+  .hero{padding:72px 0 48px}
+  .hero h1{font-size:clamp(34px,6vw,52px);margin:0 0 8px;line-height:1.1}
+  .hero .role{font-size:20px;color:var(--accent);margin:0 0 18px;font-family:"Helvetica Neue",Arial,sans-serif}
+  .hero p{max-width:620px;font-size:18px;color:var(--muted);margin:0 0 24px}
+
+  .btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);
+    background:var(--accent);color:#fff;text-decoration:none;font-size:15px;font-weight:600}
+  .btn:hover{background:#243b70}
+  .btn.ghost{background:transparent;color:var(--accent)}
+  .btn.ghost:hover{background:var(--accent-soft)}
+  .btn.off{background:#eceae5;border-color:#d9d5cc;color:#8a8f9b;cursor:not-allowed;pointer-events:none}
+
+  section{padding:40px 0}
+  section h2{font-size:28px;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 24px}
+
+  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;
+    display:flex;flex-direction:column}
+  .card h3{margin:0 0 4px;font-size:20px}
+  .meta{font-size:14px;color:var(--muted);margin:0 0 12px;font-family:"Helvetica Neue",Arial,sans-serif}
+  .card p{margin:0 0 14px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
+  .tag{background:var(--accent-soft);color:var(--accent);font-size:12.5px;padding:3px 10px;border-radius:999px}
+  .actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}
+
+  .skills{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .skills h3{margin:0 0 8px;font-size:17px}
+  .skills ul{margin:0;padding-left:18px;color:var(--muted)}
+
+  .contact-links{display:flex;flex-wrap:wrap;gap:12px}
+  footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:20px}
+
+  @media (max-width:560px){ nav a{margin-left:12px;font-size:14px} .hero{padding-top:48px} }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>Fabeeha Anbar Ahmed</h1>
+    <p class="role">Computing Science student at Thompson Rivers University</p>
+    <p>Hello! On this page you will find some of the projects that I have worked on!</p>  </div>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="sub">Click “Live demo” to try a project in your browser.</p>
+    <div class="grid" id="project-grid"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">&copy; <span id="year"></span> Fabeeha Anbar Ahmed &middot; Kamloops, BC</div>
+</footer>
+
+<script>
+/* =====================================================================
+   EDIT THIS SECTION ONLY.
+   - demo:   paste the live link to the working project (https://...).
+             Leave it as "" and the button shows "Demo coming soon".
+   - code:   paste the GitHub link for the project (optional).
+   - To add a project, copy one { ... }, block and paste it below.
+   ===================================================================== */
+const PROJECTS = [
+  {
+    title: "Kitchen Helper",
+    meta: "Personal project · 2026",
+    description: "An AI chatbot that answers cooking and food questions in a friendly chat, powered by a large language model.",
+    tags: ["Python", "Streamlit", "Gemini API"],
+    demo: "",   // e.g. "https://your-app.streamlit.app"
+    code: ""    // e.g. "https://github.com/yourname/kitchen-helper"
+  },
+  {
+    title: "Acne Vision",
+    meta: "Course project (team of 3) \u00b7 2025",
+    description: "An interactive website that lets users take a quiz to determine their skin concerns and recommends products based on their results.",
+    tags: ["HTML", "CSS", "JavaScript", "Bootstrap", "Firebase"],
+    demo: "",   // e.g. "https://yourname.github.io/acne-vision"
+    code: ""    // e.g. "https://github.com/yourname/acne-vision"
+  },
+  {
+    title: "WarrantyTrack",
+    meta: "Course project · 2026",
+    description: "A warranty management website for a hypothetical company. Customers register, view their product warranties and submit and track claims, while admins look up customers, add warranties and review or update claims.",
+    tags: ["PHP", "MySQL", "HTML", "CSS"],
+    demo: "",   // e.g. "https://your-php-host.com/warrantytrack/"
+    code: ""    // e.g. "https://github.com/yourname/warrantytrack"
+  },
+  {
+    title: "Veste",
+    meta: "Hackathon 2026 \u00b7 Team of 3 \u00b7 App concept",
+    description: "An app concept that gives daily outfit suggestions through the phone\u2019s widget, with an idea to use AI to recommend outfits based on the weather. Pitched at Hackathon 2026 and secured third position.",
+    tags: ["App concept", "AI idea", "Hackathon"],
+    demo: "",   // e.g. a link to your pitch slides or a clickable prototype
+    code: ""
+  }
+];
+
+/* ===================================================================== */
+
+function el(tag, attrs, text){
+  const n = document.createElement(tag);
+  for (const k in (attrs||{})) n.setAttribute(k, attrs[k]);
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function linkBtn(label, url, cls, fallback){
+  if (url) {
+    const a = el("a", {href:url, target:"_blank", rel:"noopener", class:"btn "+(cls||"")}, label);
+    return a;
+  }
+  return fallback ? el("span", {class:"btn off", "aria-disabled":"true"}, fallback) : null;
+}
+
+const grid = document.getElementById("project-grid");
+PROJECTS.forEach(p => {
+  const card = el("article", {class:"card"});
+  card.appendChild(el("h3", {}, p.title));
+  card.appendChild(el("div", {class:"meta"}, p.meta));
+  card.appendChild(el("p", {}, p.description));
+  const tags = el("ul", {class:"tags"});
+  p.tags.forEach(t => tags.appendChild(el("li", {class:"tag"}, t)));
+  card.appendChild(tags);
+  const actions = el("div", {class:"actions"});
+  actions.appendChild(linkBtn("Live demo \u2192", p.demo, "", "Demo coming soon"));
+  const code = linkBtn("View code", p.code, "ghost", null);
+  if (code) actions.appendChild(code);
+  card.appendChild(actions);
+  grid.appendChild(card);
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

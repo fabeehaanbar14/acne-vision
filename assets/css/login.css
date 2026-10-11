@@ -1,0 +1,296 @@
+/*COMP 3450: Authors: Magdala Nwuke
+Fabeeha Anbar Ahmed,
+Oyinkansola Olarerin (Mabel)*/
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+
+
+    z-index: 0;
+  
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/bowl.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: -1;
+   
+}
+
+#pass-text{
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    align-items: flex-start;
+    font-size: 14px;
+}
+.wrapper{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-color: rgb(255, 255, 255);
+        margin-bottom: 50px;
+        box-sizing: border-box;
+        min-height: 500px;
+        width: 800px;
+        border-radius: 30px;
+}
+
+/*.gradient{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    height: 500px;
+    /* height of the shape */
+    /* whatever color you want */
+    
+
+.reset-pass{
+    margin-top: 20px;
+}
+
+.reset-pass a{
+    
+    color: rgb(29, 133, 98);
+}
+
+.signup-link a {
+    color: rgb(2, 96, 65);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.outer{
+    display: flex;
+    justify-content: center;
+    border: 2px;
+    position: relative;
+    padding: 30px;
+    /*border-color: rgb(87, 70, 145);
+    border-style: solid;
+    border-radius: 30px;*/
+    
+    width: 900px;
+    height: 700px;
+    box-sizing: border-box;
+    padding: 50px;
+}
+
+.outer h1{
+    font-family: "Indie Flower", cursive;
+        font-weight: 100;
+        font-style: normal;
+}
+
+.background{
+    background-color: aqua;
+}
+#form-pic{
+    display: flex;
+    width: 450px;
+    height: 550px;
+    border-radius: 30px;
+}
+
+.wrapper h2{
+    display: flex;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: rgb(85, 95, 91);
+    
+}
+
+#login-btn, #signup-btn{
+    background-color: rgb(29, 133, 98);
+    margin-top: 30px;
+    border-radius: 20px;
+    padding:5px;
+    width:80px;
+    color: aliceblue;
+}
+
+
+#login-btn:hover,
+#signup-btn:hover {
+    background-color: rgb(55, 155, 155);
+}
+#header{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 20px;
+}
+
+#header img{
+    height: 40px;
+ 
+}
+
+#header h1{
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100;
+    color: rgb(2, 96, 65);
+    
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+}
+
+.header-row{
+    display: flex;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        justify-content: flex-start;
+        gap: 10px;
+
+}
+.icon{
+    color: rgb(4, 130, 88);
+}
+
+.validation{
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
+#pass-text{
+    width: 80%;
+}
+
+.input-wrapper{
+    
+    display: flex;
+        align-items: center;
+        gap: 10px;
+}
+
+.input-wrapper input {
+
+   flex: 1;
+}
+
+
+/* new
+/* Make login card larger */
+.outer {
+    width: 1100px !important;
+    height: 800px !important;
+}
+
+.wrapper {
+    width: 900px !important;
+    min-height: 600px !important;
+    padding: 40px !important;
+}
+
+/* === Make the picture match the card height === */
+.outer {
+    align-items: stretch;              /* make children (image + form) stretch to same height */
+}
+
+#form-pic {
+    height: 100% !important;           /* same height as the outer card */
+    width: 450px;                      /* keep your width */
+    max-height: 100%;
+    object-fit: cover;                 /* crop nicely instead of squishing */
+    border-radius: 30px;               /* keep rounded corners */
+}
+
+/* === Make username & password inputs bigger === */
+.input-wrapper input {
+    flex: 1;
+    height: 45px;                      /* taller input boxes */
+    padding: 10px 14px;                /* more space inside */
+    font-size: 16px;                   /* bigger text */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+/* Make login & signup buttons bigger and more noticeable */
+#login-btn, 
+#signup-btn {
+    background-color: rgb(29, 133, 98);
+    margin-top: 30px;
+    border-radius: 25px;   /* slightly rounder */
+    padding: 12px 20px;    /* bigger padding */
+    width: 140px;          /* wider button */
+    font-size: 18px;       /* bigger text */
+    font-weight: 600;      /* more readable */
+    color: aliceblue;
+    cursor: pointer;
+}
+/* Make the "don't have an account yet?" text bigger */
+.signup-link {
+    font-size: 18px;            /* bigger text */
+    font-weight: 500;           /* slightly bold */
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Turn SIGN UP into a button */
+.signup-link a {
+    display: inline-block;
+    background-color: rgb(29, 133, 98);
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.signup-link a:hover {
+    background-color: rgb(55, 155, 155);
+}
+
+#login-btn,
+#signup-btn {
+    width: 230px;
+    height: 55px;
+    background-color: rgb(29, 133, 98);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+#login-btn:hover,
+#signup-btn:hover {
+    background-color: rgb(55, 155, 155);
+}
+
+
+  

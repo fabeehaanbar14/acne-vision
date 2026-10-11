@@ -1,0 +1,148 @@
+<!--COMP 3450: Authors: Magdala Nwuke, Fabeeha Anbar Ahmed, Oyinkansola Olarerin (Mabel)-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Login</title>
+    <link href="assets/css/login.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+     
+        <div class="gradient">
+
+        </div>
+
+        
+
+        <div class="outer">
+            <img src="assets/img/routine.jpg" id="form-pic" alt="makeup image">
+            
+            <div class="wrapper">
+                <form id="register-form" action="">
+                    <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif" >Acnevision</h1>
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <div class="header-row">
+                            <span class="icon">
+                                <ion-icon name="person-circle-outline"></ion-icon>
+                            </span>
+                                <label for="username" class="labels">Username</label>
+                               
+                        </div>
+                        <div class="input-wrapper">
+                            <input id="username" type="text" placeholder="Username" required>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <div class="header-row">
+                            <span class="icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                            <label for="password" class="labels">Password</label>
+                           
+                            
+                        </div>
+
+                        <div class="input-wrapper">
+
+                        <input type="password" id="password" placeholder="Password" required>
+                        <span class="checkmark">
+                            <ion-icon name="checkmark-circle-outline" style="color: rgb(5, 150, 102); display: none;"></ion-icon>
+                        </span>
+
+                        </div>
+                        
+                    </div>
+                    <p id="pass-text"> </p>
+                    <div class="button-container">
+                    <button id="login-btn" type="submit">Login</a></button>
+                    </div>
+        
+                    <div class="reset-pass">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+        
+                    <!--<button id="login-btn" type="submit">Login</a></button>-->
+        
+                    <div class="signup-link">
+                        <p>Don't have an account yet?</p>
+                        <button id="signup-btn" onclick="location.href='signup.html'">Sign up</button>
+                    </div>
+                    
+        
+                </form>
+            </div>
+        </div>
+        
+        <!-- Firebase Scripts (Global) -->
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+        
+        
+        <script>
+            // Your Firebase config
+            const firebaseConfig = {
+                apiKey: "AIzaSyDOYdeSkSxmRkj_q1rSJrPHV40vVmQkiF4",
+                authDomain: "acnevision-85adc.firebaseapp.com",
+                projectId: "acnevision-85adc",
+                storageBucket: "acnevision-85adc.firebasestorage.app",
+                messagingSenderId: "790385055700",
+                appId: "1:790385055700:web:2c47213a66d4e489df6841"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            const db = firebase.firestore();
+
+            // Elements
+            const loginBtn = document.getElementById("login-btn");
+            const usernameInput = document.getElementById("username");
+            const passwordInput = document.getElementById("password");
+
+           function loginUser(email, password) {
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log("User logged in:", user.uid);
+                        //alert("Login successful!");
+                        window.location.href = "index.html";
+                    })
+                    .catch((error) => {
+                        console.error("Error logging in:", error.message);
+                       // alert("Login failed: " + error.message);
+                    });
+            }
+
+
+            loginBtn.addEventListener("click", async (e) => {
+                    e.preventDefault(); // Prevent page reload
+                    const username = usernameInput.value.trim();
+                    const password = passwordInput.value;
+                    const userEmail = `${username}@app.local`;
+                    loginUser(userEmail, password); // Or email if using email-based login
+                    
+                });
+        </script>
+
+
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        
+
+                
+
+        </script>
+
+       
+          
+</body>
+
+</html>
