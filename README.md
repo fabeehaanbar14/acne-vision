@@ -4,7 +4,7 @@ An interactive website that helps people work out what type of acne they have an
 
 **This was a group project.** It was built by a team of three for the course COMP 3450, and credit is shared by all three authors: Magdala Nwuke, Fabeeha Anbar Ahmed and Oyinkansola Olarerin.
 
-**Live demo:** _add the link here once the site is deployed_
+
 
 **Try it:** sign up with any username and a password of 8+ characters (no email needed), then take the quiz. You need to be logged in so your result can be saved.
 
@@ -62,6 +62,3 @@ Each user's quiz result and journal entries are stored under their own account, 
 - **Fabeeha's part:** the private journal feature (saved with Firebase), plus front-end pages and design
 - **Template:** the site layout started from the [Active Bootstrap template](https://bootstrapmade.com/active-bootstrap-website-template/) by BootstrapMade. Our team customized it and added the quiz, accounts, journal, product pages and content.
 
-## Screenshots
-
-_Add 2 to 3 screenshots here (home page, quiz question, result page, journal)._
